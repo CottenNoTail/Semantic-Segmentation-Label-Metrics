@@ -85,16 +85,16 @@ class process(object):
 
         return self.matrix
 
-    def CalReport(self):
+    def CalReport(self, matrix):
         for i in range(19):
             # TruePositives are the diagonal elements
-            TruePositives = self.matrix[i][i]
+            TruePositives = matrix[i][i]
 
             # FalsePositives are the row sum minus the ith element
-            FalsePositives = np.sum(self.matrix, axis=0)[i] - self.matrix[i][i]
+            FalsePositives = np.sum(matrix, axis=0)[i] - matrix[i][i]
 
             # FalsePositives are the col sum minus the ith element
-            FalseNegatives = np.sum(self.matrix, axis=1)[i] - self.matrix[i][i]
+            FalseNegatives = np.sum(matrix, axis=1)[i] - matrix[i][i]
 
             # By definition
             precision = TruePositives / (TruePositives + FalsePositives) if TruePositives + FalsePositives != 0 else 0
@@ -110,6 +110,9 @@ class process(object):
 
 
 def main():
+    # Prepare for the aggreated matrix
+    agg_matrix = np.zeros((19, 19))
+
     # Loop through all the 10 images
     for image_id in image_ids:
         label = plt.imread('label_' + image_id + '.png')
@@ -119,7 +122,10 @@ def main():
         processing = process(label,inference)
 
         matrix = processing.CalMatrix()
-        report = processing.CalReport()
+        report = processing.CalReport(matrix)
+
+        # Sum up all the matrix to get the aggregated matrix
+        agg_matrix += matrix
 
         # Save Report as json file
         out_file = open(image_id + "Report", 'w+')
@@ -128,8 +134,17 @@ def main():
         # Save matrix as txt file
         np.savetxt(image_id + "Matrix", matrix, fmt="%d", delimiter=',')
 
+    # Save the aggregated matrix
+    np.savetxt("agg_Matrix", agg_matrix, fmt="%d", delimiter=',')
+
+    # Calculate aggregated report and save it
+    agg_report = processing.CalReport(agg_matrix)
+
+    agg_out_file = open( "agg_Report", 'w+')
+    json.dump(agg_report, agg_out_file)
+
+
+
 
 if __name__ == '__main__':
     main()
-  
-
