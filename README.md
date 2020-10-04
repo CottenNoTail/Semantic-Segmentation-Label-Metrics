@@ -9,8 +9,9 @@ Many are also familiar with object detection, where we try to locate and classif
 The task is to compute a confusion matrix and classification report for each of the 10 image ids, and also the confusion matrix and classification report for the entire combined 10 image set. The `images/` file is the original RGB camera image that was labeled. The `labels/` and `inferences/` files contain the ground truth labels and model inferences,
 respectively, and both are the same format. Each contains a monochromatic PNG image, where the [0,255] value of each pixel represents the class assigned to that pixel. An example of `images/`,`labels/` and `inferences/` is as following:
 
-![alt text](https://github.com/CottenNoTail/Semantic-Segmentation-Label-Metrics/blob/main/street.png)
-
+<p align="center">
+  <img width="400" height="480" src="https://github.com/CottenNoTail/Semantic-Segmentation-Label-Metrics/blob/main/street.png">
+</p>
 
 The confusion matrix is defined such that matrix[i][j] contains the number of times when a ground truth label of `i` is predicted as `j` in the inferences. Thus, a perfectly performing model’s confusion matrix will only have values along the diagonal (true positives), and every non-diagonal value corresponds to errors (false positives or false negatives). The classification report is a dictionary that has, for each classification, that class’s precision, recall, and f1_score. These have the following definitions:
 
