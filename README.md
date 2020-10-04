@@ -25,6 +25,8 @@ recall = TruePositives / (TruePositives + FalseNegatives)
 
 f1_score = 2.0 * ((precision * recall) / (precision + recall))
 
+For the aggregated confusion matrix and report, I choose to sum up all the images to get a
+confusion matrix and calculate precision, recall and f1_score according to it.
 
 ## How to run:
 The only thing you have to do to get started is run the `Semantic_Segmentation_Label_Metrics.py`:
