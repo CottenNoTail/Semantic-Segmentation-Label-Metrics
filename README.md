@@ -1,12 +1,16 @@
 # Semantic-Segmentation-Label-Metrics
 
 ## Problem:
-Most people in the deep learning and computer vision communities understand what image classification is: we want our model to tell us what single object or scene is present in the image. Classification is very coarse and high-level.
 
-Many are also familiar with object detection, where we try to locate and classify multiple objects within the image, by drawing bounding boxes around them and then classifying what’s in the box. Detection is mid-level, where we have some pretty useful and detailed information, but it’s still a bit rough since we’re only drawing bounding boxes and don’t really get an accurate idea of object shape [1].
+Most people in the deep learning and computer vision communities understand what image classification is: the model to tell us what single object or scene is present in the image. In this way, classification is very coarse and high-level.
+
+Another approach is object detection, where people try to locate and classify multiple objects within the image, by drawing bounding boxes around them and then classifying what’s in the box. Detection is mid-level, where people have some pretty useful and detailed information, but it’s still a bit rough since we’re only drawing bounding boxes and don’t really get an accurate idea of object shape [1].
+
+Semantic-Segmentation is a more precise way. The goal of semantic image segmentation is to label each pixel of an image with a corresponding class of what is being represented.
+It is especially useful for self-driving. With semantic image segmentation, self-driving cars can understand their environment better and safely integrate into the existing roads.
 
 ## Task:
-The task is to compute a confusion matrix and classification report for each of the 10 image ids, and also the confusion matrix and classification report for the entire combined 10 image set. The `images/` file is the original RGB camera image that was labeled. The `labels/` and `inferences/` files contain the ground truth labels and model inferences,
+The task is to compute a confusion matrix and classification report for 10 images, and also the confusion matrix and classification report for the entire combined 10 image set. The `images/` file is the original RGB camera image that was labeled. The `labels/` and `inferences/` files contain the ground truth labels and model inferences,
 respectively, and both are the same format. Each contains a monochromatic PNG image, where the [0,255] value of each pixel represents the class assigned to that pixel. An example of `images/`,`labels/` and `inferences/` is as following:
 
 <p align="center">
