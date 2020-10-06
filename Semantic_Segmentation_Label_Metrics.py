@@ -93,7 +93,7 @@ class process(object):
             # FalsePositives are the row sum minus the ith element
             FalsePositives = np.sum(matrix, axis=0)[i] - matrix[i][i]
 
-            # FalsePositives are the col sum minus the ith element
+            # FalseNegatives are the col sum minus the ith element
             FalseNegatives = np.sum(matrix, axis=1)[i] - matrix[i][i]
 
             # By definition
